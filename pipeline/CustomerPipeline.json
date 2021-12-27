@@ -1,0 +1,44 @@
+{
+	"name": "CustomerPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "CustomerFlow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "UpdateCustomerDimension",
+						"type": "DataFlowReference",
+						"parameters": {
+							"parameter1": "\"henk\""
+						}
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "jvwasaworkspace-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "jvwasadlsfsn/Test"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-12-27T14:16:47Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}
